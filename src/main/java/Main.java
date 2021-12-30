@@ -8,53 +8,64 @@ public class Main {
         Scanner entrada = new Scanner(System.in);
         double nota=0, promedio=0, sumaPorcentaje=0;
         int opcion;
-
+        ArrayList<Carrera> arrayCarreras = new ArrayList<Carrera>();
         ArrayList<Notas> arrayNotas = new ArrayList<Notas>();
         ArrayList<Materia> arrayMaterias = new ArrayList<Materia>();
-        Carrera carrera = new Carrera(111,"Ingenieria", 20);
+        ArrayList<Usuario> arrayUsuarios = new ArrayList<Usuario>();
+
+        Carrera carr = new Carrera();
+        arrayCarreras = carr.creacionCarreras();
+
+
         Materia materia1 = new Materia(50, "Matematicas", 4, arrayNotas);
 
         arrayMaterias.add(materia1);
-        Usuario usuario1 = new Usuario(11,"Pedro","alberto","olarte",carrera,arrayMaterias);
 
 
-        System.out.println("Usuario: "+usuario1.toString());
-
-        /*do {
+        do {
             System.out.println("Menu \n" +
                     "\n Administracion de usuarios:" +
                     "\n 1) Crear usuario" +
                     "\n 2) Modificar usuario" +
                     "\n 3) Eliminar usuario" +
+                    "\n 4) Ver usuarios creados" +
                     "\n Administracion de materias:" +
-                    "\n 4) Crear materia" +
-                    "\n 5) Modificar materia" +
-                    "\n 6) Eliminar materia" +
+                    "\n 5) Crear materia" +
+                    "\n 6) Modificar materia" +
+                    "\n 7) Eliminar materia" +
                     "\n Administracion de notas:" +
-                    "\n 7) Agregar notas" +
-                    "\n 8) Modificar notas" +
-                    "\n 9) Eliminar notas" +
-                    "\n 10) Salir");
+                    "\n 8) Agregar notas" +
+                    "\n 9) Modificar notas" +
+                    "\n 10) Eliminar notas" +
+                    "\n 11) Salir");
             opcion = entrada.nextInt();
 
 
             switch (opcion){
 
             case 1:
+                Usuario usuario = new Usuario();
+                arrayUsuarios = usuario.agregarUsuario(arrayCarreras, arrayMaterias);
                 break;
             case 2:
                 break;
             case 3:
                 break;
 
+            case 4:
+                System.out.println(arrayUsuarios.toString());
+                break;
+
         }
 
         }while (opcion!=6);
 
-        */
-        //System.out.println("Materia: "+materia1.toString());
 
 
     }
+
+
+
+
 
 }
