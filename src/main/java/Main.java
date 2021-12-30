@@ -52,12 +52,12 @@ public class Main {
             case 1:
                 Usuario usuario = new Usuario();
                 arrayUsuarios = usuario.agregarUsuario(arrayCarreras, arrayMaterias);
+                arrayUsuarios.s
                 break;
             case 2:
                 break;
             case 3:
                 break;
-
             case 4:
                 System.out.println(arrayUsuarios.toString());
                 break;

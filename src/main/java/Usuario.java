@@ -100,7 +100,7 @@ public class Usuario {
         usuario.setApellidos(entrada.next());
         System.out.println("Seleccione el id de la carrera");
         for (int i = 0; i < carrerasList.size(); i++) {
-            System.out.println(carrerasList.get(i).toString());
+            System.out.println(carrerasList.get(i));
         }
         idCarrera = entrada.nextInt();
         carrera = Carrera.buscarCarrera(idCarrera);
@@ -111,7 +111,7 @@ public class Usuario {
             cantMaterias = entrada.nextInt();
         }while (cantMaterias>materiasCreadas.size());
         for (int j = 0; j < cantMaterias ; j++) {
-            System.out.println("Seleccione el id la materia "+j+1);
+            System.out.println("Seleccione el id la materia "+(j+1));
             for (int k = 0; k < materiasCreadas.size(); k++) {
                 System.out.println(materiasCreadas.get(k).toString());
             }
