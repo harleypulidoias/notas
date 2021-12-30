@@ -46,6 +46,7 @@ public class Main {
             case 1:
                 Usuario usuario = new Usuario();
                 arrayUsuarios = usuario.agregarUsuario(arrayCarreras, arrayMaterias);
+                arrayUsuarios.s
                 break;
             case 2:
                 break;
