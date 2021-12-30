@@ -6,7 +6,7 @@ public class Main {
     public static void main (String [] args) {
 
         Scanner entrada = new Scanner(System.in);
-        double nota=0, promedio=0, sumaPorcentaje=0;
+        double  promedio=0, sumaPorcentaje=0;
         int opcion;
         ArrayList<Carrera> arrayCarreras = new ArrayList<Carrera>();
         ArrayList<Notas> arrayNotas = new ArrayList<Notas>();
@@ -16,10 +16,16 @@ public class Main {
         Carrera carr = new Carrera();
         arrayCarreras = carr.creacionCarreras();
 
-
         Materia materia1 = new Materia(50, "Matematicas", 4, arrayNotas);
+        Materia materia2 = new Materia(40, "Algebra", 4, arrayNotas);
+        Materia materia3 = new Materia(30, "Calculo", 4, arrayNotas);
 
         arrayMaterias.add(materia1);
+        arrayMaterias.add(materia2);
+        arrayMaterias.add(materia3);
+
+        Usuario usuario1 = new Usuario(123, "Pepito", " ", "Perez", arrayCarreras.get(1), arrayMaterias);
+        arrayUsuarios.add(usuario1);
 
 
         do {
@@ -54,6 +60,11 @@ public class Main {
                 break;
             case 4:
                 System.out.println(arrayUsuarios.toString());
+                break;
+
+            case 8:
+                Notas nota = new Notas();
+                nota.agregarNota(arrayUsuarios);
                 break;
 
         }

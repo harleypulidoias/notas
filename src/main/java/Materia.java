@@ -14,6 +14,10 @@ public class Materia {
         this.notas = notas;
     }
 
+    public Materia() {
+
+    }
+
     public int getId() {
         return id;
     }
