@@ -63,6 +63,10 @@ public class Materia {
         for (int i = 0; i < notas.size(); i++) {
             sumaPorcentaje += notas.get(i).getPorcentaje();
             promedio += notas.get(i).getValor();
+            promedio = promedio/ notas.size();
+            if(sumaPorcentaje <= 1 && promedio <= 5){
+                validar=true;
+            }
         }
 
         return validar;
