@@ -1,12 +1,13 @@
-public class Nota {
-       private double valor;
-       private double porcentaje;
+public class Notas {
 
-    public Nota() {
+    private double valor;
+    private double porcentaje;
+
+    public Notas() {
 
     }
 
-    public Nota(double valor, double porcentaje) {
+    public Notas(double valor, double porcentaje) {
         this.valor = valor;
         this.porcentaje = porcentaje;
     }
@@ -26,4 +27,14 @@ public class Nota {
     public void setPorcentaje(double porcentaje) {
         this.porcentaje = porcentaje;
     }
+
+    @Override
+    public String toString() {
+        return "Notas{" +
+                "valor=" + valor +
+                ", porcentaje=" + porcentaje +
+                '}';
+    }
+
+
 }
