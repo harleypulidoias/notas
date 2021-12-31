@@ -84,12 +84,20 @@ public class Usuario {
                 '}';
     }
 
-    public ArrayList agregarUsuario(ArrayList<Carrera> carrerasList, ArrayList<Materia> materiasCreadas){
+    public void listarUsuarios(ArrayList<Usuario> usuarios){
+
+        for (int i = 0; i < usuarios.size(); i++) {
+            System.out.println(usuarios.get(i).toString());
+        }
+
+    }
+
+    public ArrayList agregarUsuario(ArrayList<Usuario> usuariosList, ArrayList<Carrera> carrerasList, ArrayList<Materia> materiasCreadas){
         int idCarrera, cantMaterias, idMateria;
-        ArrayList<Usuario> usuariosList = new ArrayList<>();
         ArrayList<Materia> materiasList = new ArrayList<>();
         Usuario usuario = new Usuario();
         Carrera carrera = new Carrera();
+        Materia materia = new Materia();
         System.out.println("Ingrese el id del usuario");
         usuario.setId(entrada.nextInt());
         System.out.println("Ingrese el primer nombre del usuario");
@@ -99,29 +107,107 @@ public class Usuario {
         System.out.println("Ingrese el apellido del usuario");
         usuario.setApellidos(entrada.next());
         System.out.println("Seleccione el id de la carrera");
-        for (int i = 0; i < carrerasList.size(); i++) {
-            System.out.println(carrerasList.get(i));
-        }
-        idCarrera = entrada.nextInt();
-        carrera = Carrera.buscarCarrera(idCarrera);
+
+        carrera = carrera.buscarCarrera(carrerasList);
         usuario.setCarrera(carrera);
         do {
             System.out.println("Cuantas materias desea matricular?");
             System.out.println("Hay ("+materiasCreadas.size()+") materias creadas");
             cantMaterias = entrada.nextInt();
         }while (cantMaterias>materiasCreadas.size());
-        for (int j = 0; j < cantMaterias ; j++) {
-            System.out.println("Seleccione el id la materia "+(j+1));
-            for (int k = 0; k < materiasCreadas.size(); k++) {
-                System.out.println(materiasCreadas.get(k).toString());
-            }
-            idMateria = entrada.nextInt();
-            if (materiasCreadas.get(j).getId() == idMateria){
-                materiasList.add(materiasCreadas.get(j));
+        materiasList = materia.agregarMateria(cantMaterias, materiasCreadas);
+        if (carrera.validarCreditos(carrera.getCreditosTot(),materiasList)){
+            usuario.setMateria(materiasList);
+            usuariosList.add(usuario);
+            System.out.println("Usuario creado correctamente");
+        }else {
+            System.out.println("Error al crear el usuario:");
+            System.out.println("La cantidad de creditos de las materias superan el permitido por la Carrera "+carrera.getCreditosTot());
+        }
+
+        return usuariosList;
+    }
+
+    public Usuario buscarUsuario(ArrayList<Usuario> usuariosList){
+        Usuario usuario = new Usuario();
+        int idusuario;
+
+        System.out.println("Seleccione el id del usuario");
+        for (int i = 0; i < usuariosList.size(); i++) {
+            System.out.println(usuariosList.get(i).toString());
+        }
+        idusuario = entrada.nextInt();
+        for (int j = 0; j < usuariosList.size(); j++) {
+            if (idusuario == usuariosList.get(j).getId()) {
+                usuario = usuariosList.get(j);
             }
         }
-        usuario.setMateria(materiasList);
-        usuariosList.add(usuario);
-        return usuariosList;
+
+        return usuario;
+    }
+
+
+    public void modificarUsuario(ArrayList<Usuario> usuariosList, ArrayList<Materia> materiasCreadas){
+        Usuario usuario = new Usuario();
+        Carrera carrera = new Carrera();
+        Materia materia = new Materia();
+        ArrayList<Carrera> carrerasList = new ArrayList<>();
+        ArrayList<Materia> materiasList = new ArrayList<>();
+        carrerasList = carrera.creacionCarreras();
+        int opcion, opcion2;
+
+        usuario = usuario.buscarUsuario(usuariosList);
+        do {
+            System.out.println("Cuál dato desea modificar del usuario :"+usuario.getPrimerNombre()+" \n" +
+                    "\n 1) Primer nombre" +
+                    "\n 2) Segundo nombre" +
+                    "\n 3) Apellido" +
+                    "\n 4) Carrera" +
+                    "\n 5) Materias" +
+                    "\n 7) Volver al menu principal");
+            opcion = entrada.nextInt();
+
+            switch (opcion){
+
+                case 1:
+                    System.out.println("Ingrese el NUEVO Primer Nombre del usuario "+usuario.getPrimerNombre());
+                    usuario.setPrimerNombre(entrada.next());
+                    break;
+                case 2:
+                    System.out.println("Ingrese el NUEVO Segundo Nombre del usuario "+usuario.getPrimerNombre());
+                    usuario.setSegunNombre(entrada.next());
+                    break;
+                case 3:
+                    System.out.println("Ingrese el NUEVO Apellido del usuario "+usuario.getPrimerNombre());
+                    usuario.setApellidos(entrada.next());
+                    break;
+                case 4:
+                    System.out.println("Seleccione la nueva carrera Apellido del usuario "+usuario.getPrimerNombre());
+                    carrera = carrera.buscarCarrera(carrerasList);
+                    usuario.setCarrera(carrera);
+                    break;
+                case 5:
+                    do {
+                        System.out.println("1. Agregar materia \n"+
+                                            "2. Eliminar materia \n"+
+                                            "3. Salir");
+                        opcion2 = entrada.nextInt();
+                        switch (opcion2){
+                            case 1:
+                                materia = materia.agregarUnidadMat(materiasCreadas);
+                                materiasList = usuario.getMateria();
+                                materiasList.add(materia);
+                                break;
+                            case 2:
+                                materia.eliminarMatArray(usuario.getMateria());
+                                break;
+                        }
+                    }while (opcion2!=3);
+
+                    break;
+            }
+
+        }while (opcion!=7);
+
     }
 }
