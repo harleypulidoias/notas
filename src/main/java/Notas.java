@@ -43,35 +43,14 @@ public class Notas {
     public void agregarNota(ArrayList<Usuario> usuariosCreados) {
         int idusuario, idCarrera, idMateria;
         ArrayList<Notas> notasList = new ArrayList<>();
-        ArrayList<Usuario> usuariosList = new ArrayList<>();
         ArrayList<Materia> materiasList = new ArrayList<>();
         Notas nota = new Notas();
         Usuario usuario = new Usuario();
         Materia materia = new Materia();
 
-
-        System.out.println("Seleccione el id del usuario");
-        for (int i = 0; i < usuariosCreados.size(); i++) {
-            System.out.println(usuariosCreados.get(i).toString());
-        }
-        idusuario = entrada.nextInt();
-        for (int j = 0; j < usuariosCreados.size(); j++) {
-            if (idusuario == usuariosCreados.get(j).getId()) {
-                usuario = usuariosCreados.get(j);
-            }
-        }
-
+        usuario = usuario.buscarUsuario(usuariosCreados);
         materiasList = usuario.getMateria();
-        System.out.println("Seleccione la materia del usuario: " +usuario.getPrimerNombre() + " " +materiasList.size());
-        for (int i = 0; i < materiasList.size(); i++) {
-            System.out.println(materiasList.get(i).toString());
-        }
-        idMateria = entrada.nextInt();
-        for (int j = 0; j < materiasList.size(); j++) {
-            if (idMateria == materiasList.get(j).getId()) {
-                materia = materiasList.get(j);
-            }
-        }
+        materia = materia.buscarMateria(materiasList, usuario);
         notasList = nota.insertarNotas(materia);
 
         if (materia.validarNotas2(notasList)) {
@@ -86,8 +65,8 @@ public class Notas {
     public  ArrayList insertarNotas (Materia materia) {
         int idusuario, idCarrera, idMateria;
         int cantidadNotas;
-        double valor;
-        double porcentaje;
+        double valor=0d;
+        double porcentaje=0d;
         ArrayList<Notas> notasList = new ArrayList<>();
 
         System.out.println("Cuantas notas desea ingresar a la materia:" + materia.getNombre());
@@ -96,13 +75,47 @@ public class Notas {
             System.out.println("Ingrese el valor de la nota: " +(i+1));
             valor = entrada.nextDouble();
             System.out.println("Ingrese el porcentaje de la nota: " +(i+1));
-            porcentaje = entrada.nextDouble();
+            porcentaje = (double) entrada.nextDouble();
             //Notas nota = new Notas(valor, porcentaje);
             notasList.add(new Notas(valor, porcentaje));
 
         }
         return notasList;
 
+    }
+
+    public void modificarNota(ArrayList<Usuario> usuariosList){
+        Notas nota = new Notas();
+        ArrayList<Materia> materiasList = new ArrayList<>();
+        Usuario usuario = new Usuario();
+        Materia materia = new Materia();
+
+        usuario = usuario.buscarUsuario(usuariosList);
+        materiasList = usuario.getMateria();
+        materia = materia.buscarMateria(materiasList, usuario);
+        nota = nota.buscarNotas(materia.getNotas());
+        System.out.println("Ingrese el nuevo valor de la nota");
+        nota.setValor(entrada.nextDouble());
+        System.out.println("Ingrese el nuevo porcentaje de la nota");
+        nota.setPorcentaje(entrada.nextDouble());
+    }
+
+
+    public Notas buscarNotas(ArrayList<Notas> notas){
+        Notas nota = new Notas();
+        int idNota;
+
+        System.out.println("Seleccione la nota que va a modificar");
+        for (int i = 0; i < notas.size(); i++) {
+            System.out.println(i +"."+ notas.get(i).toString());
+        }
+        idNota = entrada.nextInt();
+        for (int j = 0; j < notas.size(); j++) {
+            if (idNota == (j+1)){
+                nota = notas.get(j);
+            }
+        }
+        return nota;
     }
 
 }

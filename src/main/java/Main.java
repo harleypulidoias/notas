@@ -8,27 +8,33 @@ public class Main {
         Scanner entrada = new Scanner(System.in);
         double  promedio=0, sumaPorcentaje=0;
         int opcion;
+        Notas nota = new Notas();
+        Usuario usuario = new Usuario();
         ArrayList<Carrera> arrayCarreras = new ArrayList<Carrera>();
         ArrayList<Notas> arrayNotas = new ArrayList<Notas>();
         ArrayList<Materia> arrayMaterias = new ArrayList<Materia>();
         ArrayList<Usuario> arrayUsuarios = new ArrayList<Usuario>();
+        ArrayList<Usuario> arrayUsuariosCreados = new ArrayList<>();
 
         Carrera carr = new Carrera();
         arrayCarreras = carr.creacionCarreras();
 
-        Materia materia1 = new Materia(50, "Matematicas", 4, arrayNotas);
-        Materia materia2 = new Materia(40, "Algebra", 4, arrayNotas);
-        Materia materia3 = new Materia(30, "Calculo", 4, arrayNotas);
+        Materia materia1 = new Materia(50, "Matematicas", 6, arrayNotas);
+        Materia materia2 = new Materia(40, "Algebra", 10, arrayNotas);
+        Materia materia3 = new Materia(30, "Calculo", 5, arrayNotas);
+        Materia materia4 = new Materia(20, "Fisica", 10, arrayNotas);
 
         arrayMaterias.add(materia1);
         arrayMaterias.add(materia2);
         arrayMaterias.add(materia3);
+        arrayMaterias.add(materia4);
 
         Usuario usuario1 = new Usuario(123, "Pepito", " ", "Perez", arrayCarreras.get(1), arrayMaterias);
         arrayUsuarios.add(usuario1);
 
 
         do {
+            System.out.printf("");
             System.out.println("Menu \n" +
                     "\n Administracion de usuarios:" +
                     "\n 1) Crear usuario" +
@@ -50,23 +56,24 @@ public class Main {
             switch (opcion){
 
             case 1:
-                Usuario usuario = new Usuario();
-                arrayUsuarios = usuario.agregarUsuario(arrayCarreras, arrayMaterias);
-                arrayUsuarios.s
+                arrayUsuarios = usuario.agregarUsuario(arrayUsuarios, arrayCarreras, arrayMaterias);
                 break;
             case 2:
+                usuario.modificarUsuario(arrayUsuarios, arrayMaterias);
                 break;
             case 3:
                 break;
             case 4:
-                System.out.println(arrayUsuarios.toString());
+                usuario.listarUsuarios(arrayUsuarios);
                 break;
 
             case 8:
-                Notas nota = new Notas();
                 nota.agregarNota(arrayUsuarios);
                 break;
 
+            case 9:
+                nota.modificarNota(arrayUsuarios);
+                break;
         }
 
         }while (opcion!=6);
@@ -74,9 +81,5 @@ public class Main {
 
 
     }
-
-
-
-
 
 }
