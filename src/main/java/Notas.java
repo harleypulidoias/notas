@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Notas {
 
     private double valor;
@@ -35,6 +37,7 @@ public class Notas {
                 ", porcentaje=" + porcentaje +
                 '}';
     }
+
 
 
 }
