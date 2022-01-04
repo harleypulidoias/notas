@@ -1,9 +1,11 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Carrera {
     private int id;
     private String nombre;
     private int creditosTot;
+    Scanner entrada = new Scanner(System.in);
 
     public Carrera(int id, String nombre, int creditosTot) {
         this.id = id;
@@ -61,17 +63,30 @@ public class Carrera {
         return arrayCarreras;
     }
 
-    public static Carrera buscarCarrera(int id){
-        ArrayList<Carrera> carr = new ArrayList<Carrera>();
-        carr = creacionCarreras();
+    public Carrera buscarCarrera(ArrayList<Carrera> carrerasList){
         Carrera carreraEncontrada = null;
+        int idCarrera;
+        for (int i = 0; i < carrerasList.size(); i++) {
+            System.out.println(carrerasList.get(i));
+        }
+        idCarrera = entrada.nextInt();
 
-        for (int i = 0; i < carr.size(); i++) {
-            if (carr.get(i).getId() == id){
-                System.out.println("Carrera "+carr.get(i).getNombre()+" asignada");
-                return carr.get(i);
+        for (int i = 0; i < carrerasList.size(); i++) {
+            if (carrerasList.get(i).getId() == idCarrera){
+                System.out.println("Carrera "+carrerasList.get(i).getNombre()+" asignada \n");
+                carreraEncontrada = carrerasList.get(i);
             }
         }
         return carreraEncontrada;
+    }
+
+    public Integer validarCreditos (ArrayList<Materia> materias){
+        int sumaCreditos=0;
+
+        for (int i = 0; i < materias.size(); i++) {
+            sumaCreditos += materias.get(i).getCreditos();
+        }
+
+        return sumaCreditos;
     }
 }
