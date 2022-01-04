@@ -66,8 +66,6 @@ public class Carrera {
     public Carrera buscarCarrera(ArrayList<Carrera> carrerasList){
         Carrera carreraEncontrada = null;
         int idCarrera;
-
-        System.out.println("Seleccione el id de la carrera");
         for (int i = 0; i < carrerasList.size(); i++) {
             System.out.println(carrerasList.get(i));
         }
@@ -75,27 +73,20 @@ public class Carrera {
 
         for (int i = 0; i < carrerasList.size(); i++) {
             if (carrerasList.get(i).getId() == idCarrera){
-                System.out.println("Carrera "+carrerasList.get(i).getNombre()+" asignada");
+                System.out.println("Carrera "+carrerasList.get(i).getNombre()+" asignada \n");
                 carreraEncontrada = carrerasList.get(i);
             }
         }
         return carreraEncontrada;
     }
 
-    public Boolean validarCreditos (int creditos, ArrayList<Materia> materias){
-        boolean validacion = false;
+    public Integer validarCreditos (ArrayList<Materia> materias){
         int sumaCreditos=0;
 
         for (int i = 0; i < materias.size(); i++) {
             sumaCreditos += materias.get(i).getCreditos();
         }
-        System.out.println("Suma "+sumaCreditos);
-        System.out.println("creditos "+creditos);
-        if (sumaCreditos <= creditos){
-            validacion = true;
-        }
 
-
-        return validacion;
+        return sumaCreditos;
     }
 }
