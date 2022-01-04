@@ -64,20 +64,21 @@ public class Materia {
                 '}';
     }
 
-    public boolean validarNotas2(ArrayList<Notas> notas){
+    public double validarNotas2(ArrayList<Notas> notas){
         boolean validar = false;
         double sumaPorcentaje=0, promedio=0;
+        double resultado=0;
 
         for (int i = 0; i < notas.size(); i++) {
             sumaPorcentaje += notas.get(i).getPorcentaje();
             promedio += notas.get(i).getValor();
             promedio = promedio/ notas.size();
-            if(sumaPorcentaje <= 1 && promedio <= 5){
-                validar=true;
+            if(sumaPorcentaje <= 100 && sumaPorcentaje > 0 && promedio <= 5){
+                resultado=sumaPorcentaje;
             }
         }
 
-        return validar;
+        return resultado;
     }
 
     public Materia buscarMateria(ArrayList<Materia> materiasCreadas, Usuario usuario){
@@ -87,18 +88,20 @@ public class Materia {
 
         System.out.println("Seleccione la materia del usuario: " +usuario.getPrimerNombre());
         for (int i = 0; i < materiasCreadas.size(); i++) {
-            if (!usuario.getMateria().contains(materiasCreadas.get(i))){
+            if (materiasCreadas == usuario.getMateria()){
                 System.out.println(materiasCreadas.get(i).toString());
+            }else {
+                if (!usuario.getMateria().contains(materiasCreadas.get(i))){
+                    System.out.println(materiasCreadas.get(i).toString());
+                }
             }
         }
         idMateria = entrada.nextInt();
         for (int j = 0; j < materiasCreadas.size(); j++) {
-
             if (idMateria == materiasCreadas.get(j).getId()) {
                 materia = materiasCreadas.get(j);
                 break;
             }else {
-                System.out.println("La materia seleccionada no existe");
                 materia = null;
             }
         }
@@ -177,7 +180,9 @@ public class Materia {
                     validar = true;
                     System.out.println(materia.getId());
 
-                }else {}
+                }else {
+
+                }
             }
         }while (validar);
         System.out.println("Ingrese el nombre de la materia");

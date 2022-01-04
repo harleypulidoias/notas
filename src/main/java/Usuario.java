@@ -193,7 +193,6 @@ public class Usuario {
                         opcion2 = entrada.nextInt();
                         switch (opcion2){
                             case 1:
-                                System.out.println(materiasCreadas.toString());
                                 materiasList = usuario.getMateria();
                                 materia = materia.buscarMateria(materiasCreadas, usuario);
 
