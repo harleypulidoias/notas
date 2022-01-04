@@ -17,6 +17,7 @@ public class Main {
         ArrayList<Usuario> arrayUsuariosCreados = new ArrayList<>();
 
         Carrera carr = new Carrera();
+        Materia materia = new Materia();
         arrayCarreras = carr.creacionCarreras();
 
         Materia materia1 = new Materia(50, "Matematicas", 6, arrayNotas);
@@ -66,7 +67,9 @@ public class Main {
             case 4:
                 usuario.listarUsuarios(arrayUsuarios);
                 break;
-
+            case 5:
+                arrayMaterias = materia.crearMateria(arrayMaterias);
+                break;
             case 8:
                 nota.agregarNota(arrayUsuarios);
                 break;
@@ -76,7 +79,7 @@ public class Main {
                 break;
         }
 
-        }while (opcion!=6);
+        }while (opcion!=11);
 
 
 

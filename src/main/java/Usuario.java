@@ -107,16 +107,15 @@ public class Usuario {
         System.out.println("Ingrese el apellido del usuario");
         usuario.setApellidos(entrada.next());
         System.out.println("Seleccione el id de la carrera");
-
         carrera = carrera.buscarCarrera(carrerasList);
         usuario.setCarrera(carrera);
         do {
             System.out.println("Cuantas materias desea matricular?");
-            System.out.println("Hay ("+materiasCreadas.size()+") materias creadas");
+            System.out.println("Sólo hay "+materiasCreadas.size()+" materias disponibles");
             cantMaterias = entrada.nextInt();
         }while (cantMaterias>materiasCreadas.size());
-        materiasList = materia.agregarMateria(cantMaterias, materiasCreadas);
-        if (carrera.validarCreditos(carrera.getCreditosTot(),materiasList)){
+        materiasList = materia.agregarMateria(cantMaterias, materiasCreadas, carrera.getCreditosTot());
+        if (materiasList.size() == cantMaterias){
             usuario.setMateria(materiasList);
             usuariosList.add(usuario);
             System.out.println("Usuario creado correctamente");
