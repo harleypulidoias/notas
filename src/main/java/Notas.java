@@ -118,10 +118,7 @@ public class Notas {
         }
         return nota;
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> master
 
 }
 
