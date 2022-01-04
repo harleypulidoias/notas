@@ -15,6 +15,7 @@ public class Main {
         ArrayList<Materia> arrayMaterias = new ArrayList<Materia>();
         ArrayList<Usuario> arrayUsuarios = new ArrayList<Usuario>();
         ArrayList<Usuario> arrayUsuariosCreados = new ArrayList<>();
+        ArrayList<Materia> materiasUsuario = new ArrayList<>();
 
         Carrera carr = new Carrera();
         Materia materia = new Materia();
@@ -30,7 +31,9 @@ public class Main {
         arrayMaterias.add(materia3);
         arrayMaterias.add(materia4);
 
-        Usuario usuario1 = new Usuario(123, "Pepito", " ", "Perez", arrayCarreras.get(1), arrayMaterias);
+        materiasUsuario = arrayMaterias;
+
+        Usuario usuario1 = new Usuario(123, "Pepito", " ", "Perez", arrayCarreras.get(1), materiasUsuario);
         arrayUsuarios.add(usuario1);
 
 
@@ -57,10 +60,10 @@ public class Main {
             switch (opcion){
 
             case 1:
-                arrayUsuarios = usuario.agregarUsuario(arrayUsuarios, arrayCarreras, arrayMaterias);
+                arrayUsuarios = usuario.agregarUsuario(arrayUsuarios, arrayCarreras, materiasUsuario);
                 break;
             case 2:
-                usuario.modificarUsuario(arrayUsuarios, arrayMaterias);
+                usuario.modificarUsuario(arrayUsuarios, materiasUsuario);
                 break;
             case 3:
                 break;

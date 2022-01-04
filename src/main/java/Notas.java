@@ -72,11 +72,12 @@ public class Notas {
         System.out.println("Cuantas notas desea ingresar a la materia:" + materia.getNombre());
         cantidadNotas = entrada.nextInt();
         for (int i = 0; i < cantidadNotas; i++) {
-            System.out.println("Ingrese el valor de la nota: " +(i+1));
-            valor = entrada.nextDouble();
+            do {
+                System.out.println("Ingrese un valor válido de la nota: " +(i+1));
+                valor = entrada.nextDouble();
+            }while (valor > 5 || valor == 0);
             System.out.println("Ingrese el porcentaje de la nota: " +(i+1));
             porcentaje = (double) entrada.nextDouble();
-            //Notas nota = new Notas(valor, porcentaje);
             notasList.add(new Notas(valor, porcentaje));
 
         }

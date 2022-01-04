@@ -181,7 +181,7 @@ public class Usuario {
                     usuario.setApellidos(entrada.next());
                     break;
                 case 4:
-                    System.out.println("Seleccione la nueva carrera Apellido del usuario "+usuario.getPrimerNombre());
+                    System.out.println("Seleccione la nueva carrera del usuario "+usuario.getPrimerNombre());
                     carrera = carrera.buscarCarrera(carrerasList);
                     usuario.setCarrera(carrera);
                     break;
@@ -193,12 +193,21 @@ public class Usuario {
                         opcion2 = entrada.nextInt();
                         switch (opcion2){
                             case 1:
-                                materia = materia.agregarUnidadMat(materiasCreadas);
+                                System.out.println(materiasCreadas.toString());
                                 materiasList = usuario.getMateria();
-                                materiasList.add(materia);
+                                materia = materia.buscarMateria(materiasCreadas, usuario);
+
+                                if (materia != null || materia.getId() != 0){
+                                    materiasList.add(materia);
+                                    usuario.setMateria(materiasList);
+                                } else {
+                                    System.out.println("No se pudo encontrar la materia seleccionada");
+                                    materiasList.remove(materia);
+                                }
                                 break;
                             case 2:
-                                materia.eliminarMatArray(usuario.getMateria());
+                                materia = materia.eliminarMatArray(usuario.getMateria());
+                                usuario.getMateria().remove(materia);
                                 break;
                         }
                     }while (opcion2!=3);
