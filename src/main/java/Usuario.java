@@ -163,7 +163,7 @@ public class Usuario {
                     "\n 3) Apellido" +
                     "\n 4) Carrera" +
                     "\n 5) Materias" +
-                    "\n 7) Volver al menu principal");
+                    "\n 6) Volver al menu principal");
             opcion = entrada.nextInt();
 
             switch (opcion){
@@ -214,7 +214,7 @@ public class Usuario {
                     break;
             }
 
-        }while (opcion!=7);
+        }while (opcion!=6);
 
     }
 }
