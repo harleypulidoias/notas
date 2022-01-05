@@ -53,12 +53,17 @@ public class Notas {
         materia = materia.buscarMateria(materiasList, usuario);
         notasList = nota.insertarNotas(materia);
 
-        if (materia.validarNotas2(notasList)) {
-            materia.setNotas(notasList);
-            System.out.println("Las notas han sido agregadas correctamente");
+        if (materia.validarNotas2(materia.getNotas())<100){
+            if (notasList.size()>=0) {
+                materia.setNotas(notasList);
+                System.out.println("Las notas han sido agregadas correctamente");
+            } else {
+                System.out.println("Verifique nuevamente los valores ingresados de las notas");
+            }
         } else {
-            System.out.println("Verifique nuevamente los valores ingresados de las notas");
+            System.out.println("No puede agregar más notas a la materia "+materia.getNombre()+" porque superaría el 100%");
         }
+
 
     }
 
@@ -66,20 +71,29 @@ public class Notas {
         int idusuario, idCarrera, idMateria;
         int cantidadNotas;
         double valor=0d;
-        double porcentaje=0d;
+        double porcentaje=0, sumaPorcentaje=0;
         ArrayList<Notas> notasList = new ArrayList<>();
 
         System.out.println("Cuantas notas desea ingresar a la materia:" + materia.getNombre());
         cantidadNotas = entrada.nextInt();
         for (int i = 0; i < cantidadNotas; i++) {
+            sumaPorcentaje = materia.validarNotas2(notasList);
+            System.out.println((100-sumaPorcentaje)+"% disponible para agregar");
             do {
                 System.out.println("Ingrese un valor válido de la nota: " +(i+1));
                 valor = entrada.nextDouble();
-            }while (valor > 5 || valor == 0);
-            System.out.println("Ingrese el porcentaje de la nota: " +(i+1));
-            porcentaje = (double) entrada.nextDouble();
-            notasList.add(new Notas(valor, porcentaje));
+            }while (valor > 5 || valor <= 0);
+            do {
+                System.out.println("Ingrese un porcentaje válido para la nota: " +(i+1));
+                porcentaje = (double) entrada.nextDouble();
+            }while (porcentaje > 100 || porcentaje <= 0);
 
+            if (sumaPorcentaje <= 100){
+                notasList.add(new Notas(valor, porcentaje));
+            }else {
+                notasList = null;
+                break;
+            }
         }
         return notasList;
 
@@ -90,15 +104,37 @@ public class Notas {
         ArrayList<Materia> materiasList = new ArrayList<>();
         Usuario usuario = new Usuario();
         Materia materia = new Materia();
+        double sumaPorcentaje, nuevoValor, nuevoPorcentaje;
 
         usuario = usuario.buscarUsuario(usuariosList);
         materiasList = usuario.getMateria();
         materia = materia.buscarMateria(materiasList, usuario);
-        nota = nota.buscarNotas(materia.getNotas());
-        System.out.println("Ingrese el nuevo valor de la nota");
-        nota.setValor(entrada.nextDouble());
-        System.out.println("Ingrese el nuevo porcentaje de la nota");
-        nota.setPorcentaje(entrada.nextDouble());
+        if (materia.getNotas().size() > 0){
+            nota = nota.buscarNotas(materia.getNotas());
+            sumaPorcentaje = materia.validarNotas2(materia.getNotas());
+            sumaPorcentaje = (100 - sumaPorcentaje) + nota.getPorcentaje();
+            do {
+                System.out.println("Ingrese el nuevo valor de la nota");
+                nuevoValor = entrada.nextDouble();
+            }while (nuevoValor > 5 || nuevoValor <= 0);
+
+            System.out.println("Sólo puede modificar el porcentaje hasta "+sumaPorcentaje);
+            do {
+                System.out.println("Ingrese el nuevo porcentaje de la nota");
+                nuevoPorcentaje = entrada.nextDouble();
+            }while (nuevoPorcentaje >= sumaPorcentaje || nuevoPorcentaje <= 0);
+
+            if (nuevoPorcentaje<=sumaPorcentaje){
+                nota.setValor(nuevoValor);
+                nota.setPorcentaje(nuevoPorcentaje);
+                System.out.println("Nota modificada correctamente");
+            }else {
+                System.out.println("No se pudo modificar la nota, verifique el porcentaje");
+            }
+        }else {
+            System.out.println("Primero debe agregar notas a la materia "+materia.getNombre()+" para poder modificarla");
+        }
+
     }
 
 
@@ -108,7 +144,7 @@ public class Notas {
 
         System.out.println("Seleccione la nota que va a modificar");
         for (int i = 0; i < notas.size(); i++) {
-            System.out.println(i +"."+ notas.get(i).toString());
+            System.out.println((i+1) +"."+ notas.get(i).toString());
         }
         idNota = entrada.nextInt();
         for (int j = 0; j < notas.size(); j++) {
