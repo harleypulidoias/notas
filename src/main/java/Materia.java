@@ -169,29 +169,29 @@ public class Materia {
         Materia materia = new Materia();
         ArrayList<Notas> notas = new ArrayList<>();
         int idMateria, i=0;
-        boolean validar = false;
+        boolean validar=false;
 
         do{
             System.out.println("Ingrese un id válido para la Materia");
             idMateria = entrada.nextInt();
             for (int j = 0; j < materias.size(); j++) {
-                if (idMateria != materias.get(j).getId()){
-                    materia.setId(idMateria);
-                    validar = true;
-                    System.out.println(materia.getId());
-
+                if (idMateria == materias.get(j).getId()) {
+                    i = 0;
+                    break;
                 }else {
-
+                    i = 1;
+                    materia.setId(idMateria);
                 }
             }
-        }while (validar);
+        }while (i!=1);
+        materia.setId(idMateria);
         System.out.println("Ingrese el nombre de la materia");
         materia.setNombre(entrada.next());
         System.out.println("Ingrese los créditos de la materia");
         materia.setCreditos(entrada.nextInt());
         materia.setNotas(notas);
         materias.add(materia);
-
+        System.out.println("Materia creada correctamente");
         return materias;
     }
 }
