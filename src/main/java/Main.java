@@ -86,6 +86,10 @@ public class Main {
                 nota.modificarNota(arrayUsuarios);
                 break;
 
+                case 10:
+                    nota.eliminarNota(arrayUsuarios);
+                    break;
+
         }
 
         }while (opcion!=11);
