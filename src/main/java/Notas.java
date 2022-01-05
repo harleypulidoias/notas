@@ -1,3 +1,5 @@
+import org.intellij.lang.annotations.JdkConstants;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -153,6 +155,73 @@ public class Notas {
             }
         }
         return nota;
+    }
+
+    public void eliminarNota(ArrayList<Usuario> usuariosCreados){
+        int idusuario, idMateria;
+        double idNota;
+        ArrayList<Notas> notasList = new ArrayList<>();
+        ArrayList<Materia> materiasList = new ArrayList<>();
+        Notas nota = new Notas();
+        Usuario usuario1 = new Usuario();
+        Materia materia = new Materia();
+
+        System.out.println("Listado de usuarios:");
+        for (int m = 0; m < usuariosCreados.size(); m++) {
+            System.out.println(usuariosCreados.get(m).getId() + "-" + usuariosCreados.get(m).getPrimerNombre());
+        }
+
+        System.out.println("Seleccione el id del usuario:");
+        idusuario = entrada.nextInt();
+        for (int i = 0; i < usuariosCreados.size(); i++)
+            if (idusuario == usuariosCreados.get(i).getId()) {
+                usuario1 = usuariosCreados.get(i);
+            }
+
+        materiasList= usuario1.getMateria();
+
+        System.out.println("Listado de materias asignadas al usuario seleccionado:");
+        for (int u = 0; u < materiasList.size(); u++) {
+            System.out.println(materiasList.get(u).getId() + "-" + materiasList.get(u).getNombre() + "-" + materiasList.get(u).getNotas());
+        }
+
+        System.out.println("Seleccione el id de la materia:");
+        idMateria = entrada.nextInt();
+
+        for (int j = 0; j <materiasList.size(); j++) {
+            if (idMateria == materiasList.get(j).getId()){
+                materia = materiasList.get(j);
+                break;
+            } else {
+               materia=null;
+            }
+        }
+
+        if (materia!=null){
+            notasList = materia.getNotas();
+
+            System.out.println("Las notas ingresadas actualmente son:");
+            for (int k = 0; k < notasList.size(); k++) {
+                System.out.println((k+1) + ".  Valor:" + notasList.get(k).getValor() + " -  Porcentaje:" + notasList.get(k).getPorcentaje());
+            }
+
+            System.out.println("Seleccione la nota a eliminar:");
+            idNota = entrada.nextDouble();
+            for (int l = 0; l < notasList.size(); l++) {
+                if (idNota == (l+1) ){
+                    notasList.remove(l);
+                }
+            }
+
+            System.out.println("Las notas ingresadas actualmente son:");
+            for (int k = 0; k < notasList.size(); k++) {
+                System.out.println(notasList.get(k).getValor());
+            }
+        } else {
+            System.out.println("La materia seleccionada no cuenta con notas asignadas");
+        }
+
+
     }
 
 }
