@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
+<<<<<<< HEAD
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="corretto-16" project-jdk-type="JavaSDK" />
+=======
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_16" default="true" project-jdk-name="corretto-16" project-jdk-type="JavaSDK" />
+>>>>>>> 270a52c0a3c7a8cb53165b3ce6da20ac1f346eb0
 </project>

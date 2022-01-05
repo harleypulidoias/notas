@@ -194,4 +194,28 @@ public class Materia {
         System.out.println("Materia creada correctamente");
         return materias;
     }
+        public ArrayList eliminarMateria(ArrayList<Materia> materias) {
+        Materia materia = new Materia();
+        int materiaEliminar;
+
+        System.out.println("Seleccione el ID de la materia que desea eliminar");
+        for (int i = 0; i < materias.size(); i++) {
+            System.out.println(materias.get(i));
+        }
+        materiaEliminar = entrada.nextInt();
+        for (int j = 0; j < materias.size(); j++) {
+            if (materiaEliminar == materias.get(j).getId()) {
+                materia = materias.get(j);
+
+            }
+        }
+        if (materia != null) {
+            materias.remove(materia);
+            System.out.println("La materia " + materiaEliminar + " Ha sido eliminada");
+        } else {
+            System.out.println("No se encontro la materia solicitada");
+        }
+        return materias;
+    }
+
 }
