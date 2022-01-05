@@ -158,6 +158,10 @@ public class Usuario {
         usuario = usuario.buscarUsuario(usuariosList);
         do {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8b7012cae5348206fe0e943fb6f36e12d31bc57f
                 System.out.println("Cuál dato desea modificar del usuario :"+usuario.getPrimerNombre()+" \n" +
                         "\n 1) Primer nombre" +
                         "\n 2) Segundo nombre" +
@@ -166,7 +170,11 @@ public class Usuario {
                         "\n 5) Materias" +
                         "\n 7) Volver al menu principal");
                 opcion = entrada.nextInt();
+<<<<<<< HEAD
 =======
+=======
+
+>>>>>>> 8b7012cae5348206fe0e943fb6f36e12d31bc57f
             System.out.println("Cuál dato desea modificar del usuario :"+usuario.getPrimerNombre()+" \n" +
                     "\n 1) Primer nombre" +
                     "\n 2) Segundo nombre" +
@@ -176,6 +184,7 @@ public class Usuario {
                     "\n 6) Volver al menu principal");
             opcion = entrada.nextInt();
 >>>>>>> master
+
 
             switch (opcion){
 
