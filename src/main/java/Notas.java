@@ -53,12 +53,17 @@ public class Notas {
         materia = materia.buscarMateria(materiasList, usuario);
         notasList = nota.insertarNotas(materia);
 
-        if (notasList.size()>=0) {
-            materia.setNotas(notasList);
-            System.out.println("Las notas han sido agregadas correctamente");
+        if (materia.validarNotas2(materia.getNotas())<100){
+            if (notasList.size()>=0) {
+                materia.setNotas(notasList);
+                System.out.println("Las notas han sido agregadas correctamente");
+            } else {
+                System.out.println("Verifique nuevamente los valores ingresados de las notas");
+            }
         } else {
-            System.out.println("Verifique nuevamente los valores ingresados de las notas");
+            System.out.println("No puede agregar más notas a la materia "+materia.getNombre()+" porque superaría el 100%");
         }
+
 
     }
 
@@ -82,6 +87,7 @@ public class Notas {
                 System.out.println("Ingrese un porcentaje válido para la nota: " +(i+1));
                 porcentaje = (double) entrada.nextDouble();
             }while (porcentaje > 100 || porcentaje <= 0);
+
             if (sumaPorcentaje <= 100){
                 notasList.add(new Notas(valor, porcentaje));
             }else {
@@ -105,19 +111,20 @@ public class Notas {
         materia = materia.buscarMateria(materiasList, usuario);
         if (materia.getNotas().size() > 0){
             nota = nota.buscarNotas(materia.getNotas());
-
-
-            System.out.println("Sólo puede modificar el porcentaje hasta "+nota.getPorcentaje());
+            sumaPorcentaje = materia.validarNotas2(materia.getNotas());
+            sumaPorcentaje = (100 - sumaPorcentaje) + nota.getPorcentaje();
             do {
                 System.out.println("Ingrese el nuevo valor de la nota");
                 nuevoValor = entrada.nextDouble();
             }while (nuevoValor > 5 || nuevoValor <= 0);
+
+            System.out.println("Sólo puede modificar el porcentaje hasta "+sumaPorcentaje);
             do {
                 System.out.println("Ingrese el nuevo porcentaje de la nota");
                 nuevoPorcentaje = entrada.nextDouble();
-            }while (nuevoPorcentaje > 100 || nuevoPorcentaje <= 0);
+            }while (nuevoPorcentaje >= sumaPorcentaje || nuevoPorcentaje <= 0);
 
-            if (nota.getPorcentaje()<=nuevoPorcentaje){
+            if (nuevoPorcentaje<=sumaPorcentaje){
                 nota.setValor(nuevoValor);
                 nota.setPorcentaje(nuevoPorcentaje);
                 System.out.println("Nota modificada correctamente");
