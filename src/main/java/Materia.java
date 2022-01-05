@@ -1,5 +1,3 @@
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -64,30 +62,30 @@ public class Materia {
                 '}';
     }
 
-    public boolean validarNotas2(ArrayList<Notas> notas){
+    public boolean validarNotas2(ArrayList<Notas> notas) {
         boolean validar = false;
-        double sumaPorcentaje=0, promedio=0;
+        double sumaPorcentaje = 0, promedio = 0;
 
         for (int i = 0; i < notas.size(); i++) {
             sumaPorcentaje += notas.get(i).getPorcentaje();
             promedio += notas.get(i).getValor();
-            promedio = promedio/ notas.size();
-            if(sumaPorcentaje <= 1 && promedio <= 5){
-                validar=true;
+            promedio = promedio / notas.size();
+            if (sumaPorcentaje <= 1 && promedio <= 5) {
+                validar = true;
             }
         }
 
         return validar;
     }
 
-    public Materia buscarMateria(ArrayList<Materia> materiasCreadas, Usuario usuario){
+    public Materia buscarMateria(ArrayList<Materia> materiasCreadas, Usuario usuario) {
         Materia materia = new Materia();
         ArrayList<Materia> materiasDispo = new ArrayList<>();
         int idMateria;
 
-        System.out.println("Seleccione la materia del usuario: " +usuario.getPrimerNombre());
+        System.out.println("Seleccione la materia del usuario: " + usuario.getPrimerNombre());
         for (int i = 0; i < materiasCreadas.size(); i++) {
-            if (!usuario.getMateria().contains(materiasCreadas.get(i))){
+            if (!usuario.getMateria().contains(materiasCreadas.get(i))) {
                 System.out.println(materiasCreadas.get(i).toString());
             }
         }
@@ -97,7 +95,7 @@ public class Materia {
             if (idMateria == materiasCreadas.get(j).getId()) {
                 materia = materiasCreadas.get(j);
                 break;
-            }else {
+            } else {
                 System.out.println("La materia seleccionada no existe");
                 materia = null;
             }
@@ -106,19 +104,19 @@ public class Materia {
         return materia;
     }
 
-    public ArrayList agregarMateria (int cantMaterias, ArrayList<Materia> materiasCreadas, Integer cantCreditos){
+    public ArrayList agregarMateria(int cantMaterias, ArrayList<Materia> materiasCreadas, Integer cantCreditos) {
         ArrayList<Materia> materias = new ArrayList<>();
         ArrayList<Materia> materiasTemp = new ArrayList<>();
         ArrayList<Integer> escogidas = new ArrayList<>();
         Carrera carrera = new Carrera();
-        int idMateria, sumaCreditos=0;
+        int idMateria, sumaCreditos = 0;
 
 
-        for (int j = 0; j < cantMaterias ; j++) {
-            System.out.println("Seleccione el id la materia "+(j+1));
-            System.out.println("Tiene "+(cantCreditos-sumaCreditos)+" creditos disponibles");
+        for (int j = 0; j < cantMaterias; j++) {
+            System.out.println("Seleccione el id la materia " + (j + 1));
+            System.out.println("Tiene " + (cantCreditos - sumaCreditos) + " creditos disponibles");
             for (int k = 0; k < materiasCreadas.size(); k++) {
-                if (!escogidas.contains(materiasCreadas.get(k).getId())){
+                if (!escogidas.contains(materiasCreadas.get(k).getId())) {
                     System.out.println(materiasCreadas.get(k).toString());
                 }
             }
@@ -126,24 +124,24 @@ public class Materia {
             escogidas.add(idMateria);
             for (int i = 0; i < materiasCreadas.size(); i++) {
 
-                if (materiasCreadas.get(i).getId() == idMateria){
+                if (materiasCreadas.get(i).getId() == idMateria) {
                     materiasTemp.add(materiasCreadas.get(i));
                     sumaCreditos = carrera.validarCreditos(materiasTemp);
-                    if (sumaCreditos <= cantCreditos){
+                    if (sumaCreditos <= cantCreditos) {
                         materias.add(materiasCreadas.get(i));
-                        System.out.println("Materia "+materiasCreadas.get(i).getNombre()+" agregada correctamente \n");
-                    }else {
+                        System.out.println("Materia " + materiasCreadas.get(i).getNombre() + " agregada correctamente \n");
+                    } else {
                         System.out.println("No se pudo agregar la materia");
                     }
 
                 }
             }
         }
-        
+
         return materias;
     }
-    
-    public Materia eliminarMatArray(ArrayList<Materia> materias){
+
+    public Materia eliminarMatArray(ArrayList<Materia> materias) {
         Materia materia = new Materia();
         int idMateria;
 
@@ -153,8 +151,8 @@ public class Materia {
         }
         idMateria = entrada.nextInt();
         for (int j = 0; j < materias.size(); j++) {
-            if (idMateria == materias.get(j).getId()){
-                System.out.println("Materia "+materias.get(j).toString()+ " eliminada correctamente");
+            if (idMateria == materias.get(j).getId()) {
+                System.out.println("Materia " + materias.get(j).toString() + " eliminada correctamente");
                 materia = materias.get(j);
             }
         }
@@ -162,24 +160,25 @@ public class Materia {
         return materia;
     }
 
-    public ArrayList crearMateria(ArrayList<Materia> materias){
+    public ArrayList crearMateria(ArrayList<Materia> materias) {
         Materia materia = new Materia();
         ArrayList<Notas> notas = new ArrayList<>();
-        int idMateria, i=0;
+        int idMateria, i = 0;
         boolean validar = false;
 
-        do{
+        do {
             System.out.println("Ingrese un id válido para la Materia");
             idMateria = entrada.nextInt();
             for (int j = 0; j < materias.size(); j++) {
-                if (idMateria != materias.get(j).getId()){
+                if (idMateria != materias.get(j).getId()) {
                     materia.setId(idMateria);
                     validar = true;
                     System.out.println(materia.getId());
 
-                }else {}
+                } else {
+                }
             }
-        }while (validar);
+        } while (validar);
         System.out.println("Ingrese el nombre de la materia");
         materia.setNombre(entrada.next());
         System.out.println("Ingrese los créditos de la materia");
@@ -189,4 +188,29 @@ public class Materia {
 
         return materias;
     }
+
+    public ArrayList eliminarMateria(ArrayList<Materia> materias) {
+        Materia materia = new Materia();
+        int materiaEliminar;
+
+        System.out.println("Seleccione el ID de la materia que desea eliminar");
+        for (int i = 0; i < materias.size(); i++) {
+            System.out.println(materias.get(i));
+        }
+        materiaEliminar = entrada.nextInt();
+        for (int j = 0; j < materias.size(); j++) {
+            if (materiaEliminar == materias.get(j).getId()) {
+                    materia = materias.get(j);
+
+            }
+        }
+        if (materia != null) {
+            materias.remove(materia);
+            System.out.println("La materia " + materiaEliminar + " Ha sido eliminada");
+        } else {
+            System.out.println("No se encontro la materia solicitada");
+        }
+        return materias;
+    }
+
 }

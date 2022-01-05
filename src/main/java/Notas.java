@@ -1,5 +1,11 @@
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Scanner;
+=======
+
+import java.util.Scanner;
+
+>>>>>>> master
 
 public class Notas {
 
@@ -62,21 +68,21 @@ public class Notas {
 
     }
 
-    public  ArrayList insertarNotas (Materia materia) {
+    public ArrayList insertarNotas(Materia materia) {
         int idusuario, idCarrera, idMateria;
         int cantidadNotas;
-        double valor=0d;
-        double porcentaje=0d;
+        double valor = 0d;
+        double porcentaje = 0d;
         ArrayList<Notas> notasList = new ArrayList<>();
 
         System.out.println("Cuantas notas desea ingresar a la materia:" + materia.getNombre());
         cantidadNotas = entrada.nextInt();
         for (int i = 0; i < cantidadNotas; i++) {
             do {
-                System.out.println("Ingrese un valor válido de la nota: " +(i+1));
+                System.out.println("Ingrese un valor válido de la nota: " + (i + 1));
                 valor = entrada.nextDouble();
-            }while (valor > 5 || valor == 0);
-            System.out.println("Ingrese el porcentaje de la nota: " +(i+1));
+            } while (valor > 5 || valor == 0);
+            System.out.println("Ingrese el porcentaje de la nota: " + (i + 1));
             porcentaje = (double) entrada.nextDouble();
             notasList.add(new Notas(valor, porcentaje));
 
@@ -85,7 +91,7 @@ public class Notas {
 
     }
 
-    public void modificarNota(ArrayList<Usuario> usuariosList){
+    public void modificarNota(ArrayList<Usuario> usuariosList) {
         Notas nota = new Notas();
         ArrayList<Materia> materiasList = new ArrayList<>();
         Usuario usuario = new Usuario();
@@ -102,17 +108,17 @@ public class Notas {
     }
 
 
-    public Notas buscarNotas(ArrayList<Notas> notas){
+    public Notas buscarNotas(ArrayList<Notas> notas) {
         Notas nota = new Notas();
         int idNota;
 
         System.out.println("Seleccione la nota que va a modificar");
         for (int i = 0; i < notas.size(); i++) {
-            System.out.println(i +"."+ notas.get(i).toString());
+            System.out.println(i + "." + notas.get(i).toString());
         }
         idNota = entrada.nextInt();
         for (int j = 0; j < notas.size(); j++) {
-            if (idNota == (j+1)){
+            if (idNota == (j + 1)) {
                 nota = notas.get(j);
             }
         }
@@ -121,6 +127,7 @@ public class Notas {
 
 
 }
+
 
 
 

@@ -73,6 +73,10 @@ public class Main {
             case 5:
                 arrayMaterias = materia.crearMateria(arrayMaterias);
                 break;
+
+                case 7:
+                arrayMaterias = materia.eliminarMateria(arrayMaterias);
+                break;
             case 8:
                 nota.agregarNota(arrayUsuarios);
                 break;
