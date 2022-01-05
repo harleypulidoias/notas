@@ -163,7 +163,7 @@ public class Usuario {
                     "\n 3) Apellido" +
                     "\n 4) Carrera" +
                     "\n 5) Materias" +
-                    "\n 7) Volver al menu principal");
+                    "\n 6) Volver al menu principal");
             opcion = entrada.nextInt();
 
             switch (opcion){
@@ -193,7 +193,6 @@ public class Usuario {
                         opcion2 = entrada.nextInt();
                         switch (opcion2){
                             case 1:
-                                System.out.println(materiasCreadas.toString());
                                 materiasList = usuario.getMateria();
                                 materia = materia.buscarMateria(materiasCreadas, usuario);
 
@@ -215,7 +214,40 @@ public class Usuario {
                     break;
             }
 
-        }while (opcion!=7);
+        }while (opcion!=6);
+
+    }
+
+    public void eliminarUsuario(ArrayList<Usuario> eliminarUsuario) {
+        Usuario usuario1 = new Usuario();
+
+        for (int i = 0; i < eliminarUsuario.size(); i++) {
+            System.out.println(eliminarUsuario.get(i));
+        }
+        String eliminar ;
+        int indice=0;
+        System.out.println("que usuario desea eliminar");
+        eliminar = entrada.next();
+        for (Usuario usuario: eliminarUsuario ) {
+            if(eliminar.equals(usuario.getPrimerNombre())){
+                indice=1;
+                usuario1=usuario;
+            }
+        }
+        if (indice ==1) {
+            eliminarUsuario.remove(usuario1);
+            System.out.println("usuario eliminado");
+        } else {
+            System.out.println("el usuario no se encuentra");
+        }
+
+        for (Usuario eliminarU : eliminarUsuario) {
+            System.out.println(eliminarU);
+
+
+        }
+
+
 
     }
 }
