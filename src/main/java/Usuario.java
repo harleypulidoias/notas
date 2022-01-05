@@ -157,14 +157,14 @@ public class Usuario {
 
         usuario = usuario.buscarUsuario(usuariosList);
         do {
-            System.out.println("Cuál dato desea modificar del usuario :"+usuario.getPrimerNombre()+" \n" +
-                    "\n 1) Primer nombre" +
-                    "\n 2) Segundo nombre" +
-                    "\n 3) Apellido" +
-                    "\n 4) Carrera" +
-                    "\n 5) Materias" +
-                    "\n 7) Volver al menu principal");
-            opcion = entrada.nextInt();
+                System.out.println("Cuál dato desea modificar del usuario :"+usuario.getPrimerNombre()+" \n" +
+                        "\n 1) Primer nombre" +
+                        "\n 2) Segundo nombre" +
+                        "\n 3) Apellido" +
+                        "\n 4) Carrera" +
+                        "\n 5) Materias" +
+                        "\n 7) Volver al menu principal");
+                opcion = entrada.nextInt();
 
             switch (opcion){
 
