@@ -89,10 +89,7 @@ public class Main {
                 case 10:
                     nota.eliminarNota(arrayUsuarios);
                     break;
-<<<<<<< HEAD
 
-=======
->>>>>>> 8b7012cae5348206fe0e943fb6f36e12d31bc57f
         }
 
         }while (opcion!=11);
