@@ -65,7 +65,7 @@ public class Main {
             case 2:
                 usuario.modificarUsuario(arrayUsuarios, materiasUsuario);
                 break;
-            case 3:
+            case 3:usuario.eliminarUsuario(arrayUsuarios);
                 break;
             case 4:
                 usuario.listarUsuarios(arrayUsuarios);
