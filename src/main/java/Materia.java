@@ -64,20 +64,21 @@ public class Materia {
                 '}';
     }
 
-    public boolean validarNotas2(ArrayList<Notas> notas){
+    public double validarNotas2(ArrayList<Notas> notas){
         boolean validar = false;
         double sumaPorcentaje=0, promedio=0;
+        double resultado=0;
 
         for (int i = 0; i < notas.size(); i++) {
             sumaPorcentaje += notas.get(i).getPorcentaje();
             promedio += notas.get(i).getValor();
             promedio = promedio/ notas.size();
-            if(sumaPorcentaje <= 1 && promedio <= 5){
-                validar=true;
+            if(sumaPorcentaje <= 100 && sumaPorcentaje > 0 && promedio <= 5){
+                resultado=sumaPorcentaje;
             }
         }
 
-        return validar;
+        return resultado;
     }
 
     public Materia buscarMateria(ArrayList<Materia> materiasCreadas, Usuario usuario){
@@ -87,18 +88,20 @@ public class Materia {
 
         System.out.println("Seleccione la materia del usuario: " +usuario.getPrimerNombre());
         for (int i = 0; i < materiasCreadas.size(); i++) {
-            if (!usuario.getMateria().contains(materiasCreadas.get(i))){
+            if (materiasCreadas == usuario.getMateria()){
                 System.out.println(materiasCreadas.get(i).toString());
+            }else {
+                if (!usuario.getMateria().contains(materiasCreadas.get(i))){
+                    System.out.println(materiasCreadas.get(i).toString());
+                }
             }
         }
         idMateria = entrada.nextInt();
         for (int j = 0; j < materiasCreadas.size(); j++) {
-
             if (idMateria == materiasCreadas.get(j).getId()) {
                 materia = materiasCreadas.get(j);
                 break;
             }else {
-                System.out.println("La materia seleccionada no existe");
                 materia = null;
             }
         }
@@ -166,27 +169,53 @@ public class Materia {
         Materia materia = new Materia();
         ArrayList<Notas> notas = new ArrayList<>();
         int idMateria, i=0;
-        boolean validar = false;
+        boolean validar=false;
 
         do{
             System.out.println("Ingrese un id válido para la Materia");
             idMateria = entrada.nextInt();
             for (int j = 0; j < materias.size(); j++) {
-                if (idMateria != materias.get(j).getId()){
+                if (idMateria == materias.get(j).getId()) {
+                    i = 0;
+                    break;
+                }else {
+                    i = 1;
                     materia.setId(idMateria);
-                    validar = true;
-                    System.out.println(materia.getId());
-
-                }else {}
+                }
             }
-        }while (validar);
+        }while (i!=1);
+        materia.setId(idMateria);
         System.out.println("Ingrese el nombre de la materia");
         materia.setNombre(entrada.next());
         System.out.println("Ingrese los créditos de la materia");
         materia.setCreditos(entrada.nextInt());
         materia.setNotas(notas);
         materias.add(materia);
-
+        System.out.println("Materia creada correctamente");
         return materias;
     }
+        public ArrayList eliminarMateria(ArrayList<Materia> materias) {
+        Materia materia = new Materia();
+        int materiaEliminar;
+
+        System.out.println("Seleccione el ID de la materia que desea eliminar");
+        for (int i = 0; i < materias.size(); i++) {
+            System.out.println(materias.get(i));
+        }
+        materiaEliminar = entrada.nextInt();
+        for (int j = 0; j < materias.size(); j++) {
+            if (materiaEliminar == materias.get(j).getId()) {
+                materia = materias.get(j);
+
+            }
+        }
+        if (materia != null) {
+            materias.remove(materia);
+            System.out.println("La materia " + materiaEliminar + " Ha sido eliminada");
+        } else {
+            System.out.println("No se encontro la materia solicitada");
+        }
+        return materias;
+    }
+
 }

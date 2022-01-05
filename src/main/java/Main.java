@@ -65,7 +65,7 @@ public class Main {
             case 2:
                 usuario.modificarUsuario(arrayUsuarios, materiasUsuario);
                 break;
-            case 3:
+            case 3:usuario.eliminarUsuario(arrayUsuarios);
                 break;
             case 4:
                 usuario.listarUsuarios(arrayUsuarios);
@@ -73,10 +73,15 @@ public class Main {
             case 5:
                 arrayMaterias = materia.crearMateria(arrayMaterias);
                 break;
+            case 6:
+                arrayMaterias = materia.crearMateria(arrayMaterias);
+                break;
+            case 7:
+                arrayMaterias = materia.eliminarMateria(arrayMaterias);
+                break;
             case 8:
                 nota.agregarNota(arrayUsuarios);
                 break;
-
             case 9:
                 nota.modificarNota(arrayUsuarios);
                 break;
