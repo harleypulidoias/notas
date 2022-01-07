@@ -53,7 +53,8 @@ public class Main {
                     "\n 8) Agregar notas" +
                     "\n 9) Modificar notas" +
                     "\n 10) Eliminar notas" +
-                    "\n 11) Salir");
+                    "\n 11) Resultados" +
+                    "\n 12) Salir");
             opcion = entrada.nextInt();
 
 
@@ -86,13 +87,16 @@ public class Main {
                 nota.modificarNota(arrayUsuarios);
                 break;
 
-                case 10:
-                    nota.eliminarNota(arrayUsuarios);
-                    break;
+            case 10:
+                nota.eliminarNota(arrayUsuarios);
+                break;
 
+            case 11:
+                usuario.resultados(arrayUsuarios);
+                break;
         }
 
-        }while (opcion!=11);
+        }while (opcion!=12);
 
 
 

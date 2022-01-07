@@ -131,14 +131,19 @@ public class Usuario {
         Usuario usuario = new Usuario();
         int idusuario;
 
-        System.out.println("Seleccione el id del usuario");
+        System.out.println("Listado de usuarios:");
         for (int i = 0; i < usuariosList.size(); i++) {
-            System.out.println(usuariosList.get(i).toString());
+            System.out.println(usuariosList.get(i).getId() + "-" + usuariosList.get(i).getPrimerNombre());
         }
+        System.out.println("Seleccione el id del usuario");
         idusuario = entrada.nextInt();
         for (int j = 0; j < usuariosList.size(); j++) {
             if (idusuario == usuariosList.get(j).getId()) {
                 usuario = usuariosList.get(j);
+                break;
+            }
+            else {
+                usuario = null;
             }
         }
 
@@ -256,8 +261,33 @@ public class Usuario {
 
 
         }
+    }
 
 
+    public void resultados(ArrayList<Usuario> usuarios){
+        Usuario usuario = new Usuario();
+        Notas nota = new Notas();
+        double notaDef;
+        String definitiva = "";
+
+        usuario = usuario.buscarUsuario(usuarios);
+
+        System.out.println("Alumno: \n"+usuario.getPrimerNombre());
+        System.out.println("Carrera asignada: \n"+usuario.getCarrera().getNombre());
+        System.out.println("Materias matriculadas: \n");
+        for (Materia materias: usuario.getMateria()) {
+            if (materias.getNotas().size() > 0){
+                notaDef = nota.calcularNotaDefinitiva(materias.getNotas());
+                if (notaDef>=3){
+                    definitiva = "Aprobó";
+                }else {
+                    definitiva = "Desaprobó";
+                }
+                System.out.println("Materia: "+materias.getNombre()+" Nota definitiva: "+notaDef+" : "+definitiva+"\n");
+            }else {
+                System.out.println("La materia "+materias.getNombre()+" no tiene notas asignadas"+"\n");
+            }
+        }
 
     }
 }

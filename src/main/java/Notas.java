@@ -224,6 +224,20 @@ public class Notas {
 
     }
 
+    public double calcularNotaDefinitiva(ArrayList<Notas> notas){
+        double resultado=0, porcentaje=0, nota =0, total=0;
+
+        for (int i = 0; i < notas.size(); i++) {
+            porcentaje = notas.get(i).getPorcentaje();
+            nota = notas.get(i).getValor();
+            porcentaje = porcentaje/100;
+            resultado = nota * porcentaje;
+            total += resultado;
+        }
+
+        return total;
+    }
+
 }
 
 
