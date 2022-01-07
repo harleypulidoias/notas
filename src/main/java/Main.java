@@ -74,7 +74,7 @@ public class Main {
                 arrayMaterias = materia.crearMateria(arrayMaterias);
                 break;
             case 6:
-                arrayMaterias = materia.crearMateria(arrayMaterias);
+                materia.modificarMateria(arrayMaterias);
                 break;
             case 7:
                 arrayMaterias = materia.eliminarMateria(arrayMaterias);
@@ -89,6 +89,7 @@ public class Main {
                 case 10:
                     nota.eliminarNota(arrayUsuarios);
                     break;
+
         }
 
         }while (opcion!=11);

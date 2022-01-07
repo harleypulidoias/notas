@@ -194,6 +194,8 @@ public class Materia {
         System.out.println("Materia creada correctamente");
         return materias;
     }
+
+
         public ArrayList eliminarMateria(ArrayList<Materia> materias) {
         Materia materia = new Materia();
         int materiaEliminar;
@@ -218,4 +220,36 @@ public class Materia {
         return materias;
     }
 
+    public void modificarMateria (ArrayList<Materia> materiasCreadas) {
+        int idMateria;
+        Materia materia = new Materia();
+        System.out.println("Listado de materias:");
+        for (int i = 0; i < materiasCreadas.size() ; i++) {
+            System.out.println(materiasCreadas.get(i).getId()  + "-" +  materiasCreadas.get(i).getNombre());
+        }
+
+        System.out.println("Seleccione el ID de la materia a modificar:");
+        idMateria = entrada.nextInt();
+        for (int j = 0; j <materiasCreadas.size(); j++) {
+                if (idMateria == materiasCreadas.get(j).getId()){
+                    materia = materiasCreadas.get(j);
+                    break;
+                } else {
+                    materia=null;
+                }
+            }
+        if (materia!=null){
+            if (!(materia.getNotas().size() > 0)){
+                System.out.println("Ingrese el nuevo nombre de la materia:");
+                materia.setNombre(entrada.next());
+                System.out.println("Ingrese los nuevos creditos de la materia:");
+                materia.setCreditos(entrada.nextInt());
+                System.out.println("La materia se ha modificado correctamente");
+            } else {
+                System.out.println("Se debe eliminar las notas asignadas a la materia antes de realizar alguna modificación");
+            }
+        } else {
+            System.out.println("La materia seleccionada no se encontro");
+        }
+    }
 }

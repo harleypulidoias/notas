@@ -157,7 +157,6 @@ public class Usuario {
 
         usuario = usuario.buscarUsuario(usuariosList);
         do {
-
                 System.out.println("Cuál dato desea modificar del usuario :"+usuario.getPrimerNombre()+" \n" +
                         "\n 1) Primer nombre" +
                         "\n 2) Segundo nombre" +
