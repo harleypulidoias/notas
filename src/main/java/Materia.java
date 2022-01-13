@@ -96,6 +96,7 @@ public class Materia {
                 }
             }
         }
+        System.out.println("ingrese el id de la materia: ");
         idMateria = entrada.nextInt();
         for (int j = 0; j < materiasCreadas.size(); j++) {
             if (idMateria == materiasCreadas.get(j).getId()) {
@@ -119,12 +120,17 @@ public class Materia {
 
         for (int j = 0; j < cantMaterias ; j++) {
             System.out.println("Seleccione el id la materia "+(j+1));
+            System.out.println("-----------------------------------");
             System.out.println("Tiene "+(cantCreditos-sumaCreditos)+" creditos disponibles");
+            System.out.println("---------------------------------------");
             for (int k = 0; k < materiasCreadas.size(); k++) {
                 if (!escogidas.contains(materiasCreadas.get(k).getId())){
                     System.out.println(materiasCreadas.get(k).toString());
                 }
             }
+            System.out.println("------------------------------------------");
+            System.out.println("''tener en cuenta la cantidad de creditos---''");
+            System.out.print("ingrese solo id de la materia: ");
             idMateria = entrada.nextInt();
             escogidas.add(idMateria);
             for (int i = 0; i < materiasCreadas.size(); i++) {
@@ -134,7 +140,9 @@ public class Materia {
                     sumaCreditos = carrera.validarCreditos(materiasTemp);
                     if (sumaCreditos <= cantCreditos){
                         materias.add(materiasCreadas.get(i));
-                        System.out.println("Materia "+materiasCreadas.get(i).getNombre()+" agregada correctamente \n");
+                        System.out.println("-----------------------------------------------------");
+                        System.out.println("***** Materia "+materiasCreadas.get(i).getNombre()+" agregada correctamente ***** \n");
+                        System.out.println("-----------------------------------------------------");
                     }else {
                         System.out.println("No se pudo agregar la materia");
                     }
@@ -157,7 +165,9 @@ public class Materia {
         idMateria = entrada.nextInt();
         for (int j = 0; j < materias.size(); j++) {
             if (idMateria == materias.get(j).getId()){
-                System.out.println("Materia "+materias.get(j).toString()+ " eliminada correctamente");
+                System.out.println("-----------------------------------------------------");
+                System.out.println("***** Materia "+materias.get(j).toString()+ " eliminada correctamente *****");
+                System.out.println("-----------------------------------------------------");
                 materia = materias.get(j);
             }
         }
@@ -191,7 +201,9 @@ public class Materia {
         materia.setCreditos(entrada.nextInt());
         materia.setNotas(notas);
         materias.add(materia);
-        System.out.println("Materia creada correctamente");
+        System.out.println("_____________________________________");
+        System.out.println("***** Materia creada correctamente *****");
+        System.out.println("---------------------------------------");
         return materias;
     }
 
@@ -200,20 +212,23 @@ public class Materia {
         Materia materia = new Materia();
         int materiaEliminar;
 
-        System.out.println("Seleccione el ID de la materia que desea eliminar");
+        System.out.println("Seleccione el ID de la materia que desea eliminar: ");
+            System.out.println("");
         for (int i = 0; i < materias.size(); i++) {
             System.out.println(materias.get(i));
         }
+            System.out.println("ingrese el id de la materia a eliminar.");
         materiaEliminar = entrada.nextInt();
         for (int j = 0; j < materias.size(); j++) {
             if (materiaEliminar == materias.get(j).getId()) {
                 materia = materias.get(j);
-
             }
         }
         if (materia != null) {
             materias.remove(materia);
-            System.out.println("La materia " + materiaEliminar + " Ha sido eliminada");
+            System.out.println("---------------------------------------------------");
+            System.out.println("***** La materia " + materiaEliminar + " Ha sido eliminada *****");
+            System.out.println("---------------------------------------------------");
         } else {
             System.out.println("No se encontro la materia solicitada");
         }
@@ -244,7 +259,9 @@ public class Materia {
                 materia.setNombre(entrada.next());
                 System.out.println("Ingrese los nuevos creditos de la materia:");
                 materia.setCreditos(entrada.nextInt());
-                System.out.println("La materia se ha modificado correctamente");
+                System.out.println("-----------------------------------------------------");
+                System.out.println("***** La materia se ha modificado correctamente *****");
+                System.out.println("-----------------------------------------------------");
             } else {
                 System.out.println("Se debe eliminar las notas asignadas a la materia antes de realizar alguna modificación");
             }

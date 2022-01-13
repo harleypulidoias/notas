@@ -22,9 +22,9 @@ public class Main {
         arrayCarreras = carr.creacionCarreras();
 
         Materia materia1 = new Materia(50, "Matematicas", 6, arrayNotas);
-        Materia materia2 = new Materia(40, "Algebra", 10, arrayNotas);
+        Materia materia2 = new Materia(40, "Algebra", 5, arrayNotas);
         Materia materia3 = new Materia(30, "Calculo", 5, arrayNotas);
-        Materia materia4 = new Materia(20, "Fisica", 10, arrayNotas);
+        Materia materia4 = new Materia(20, "Fisica", 8, arrayNotas);
 
         arrayMaterias.add(materia1);
         arrayMaterias.add(materia2);
@@ -33,28 +33,36 @@ public class Main {
 
         materiasUsuario = arrayMaterias;
 
-        Usuario usuario1 = new Usuario(123, "Pepito", " ", "Perez", arrayCarreras.get(1), materiasUsuario);
+        Usuario usuario1 = new Usuario(01, "Pepito", " ", "Perez", arrayCarreras.get(1), materiasUsuario);
         arrayUsuarios.add(usuario1);
 
 
         do {
             System.out.printf("");
-            System.out.println("Menu \n" +
+            System.out.println(" MENU " +
+                    "\n ------------\n" +
                     "\n Administracion de usuarios:" +
+                    "\n ---------------------------" +
                     "\n 1) Crear usuario" +
                     "\n 2) Modificar usuario" +
                     "\n 3) Eliminar usuario" +
-                    "\n 4) Ver usuarios creados" +
+                    "\n 4) Ver usuarios creados\n" +
                     "\n Administracion de materias:" +
+                    "\n ---------------------------" +
                     "\n 5) Crear materia" +
                     "\n 6) Modificar materia" +
-                    "\n 7) Eliminar materia" +
+                    "\n 7) Eliminar materia\n" +
                     "\n Administracion de notas:" +
+                    "\n ------------------------" +
                     "\n 8) Agregar notas" +
                     "\n 9) Modificar notas" +
-                    "\n 10) Eliminar notas" +
+                    "\n 10) Eliminar notas\n" +
                     "\n 11) Resultados" +
-                    "\n 12) Salir");
+                    "\n ---------------\n" +
+                    "\n 12) Salir\n");
+            System.out.print("digita tu opcion: ");
+            System.out.println("");
+
             opcion = entrada.nextInt();
 
 

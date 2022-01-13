@@ -69,11 +69,15 @@ public class Carrera {
         for (int i = 0; i < carrerasList.size(); i++) {
             System.out.println(carrerasList.get(i));
         }
+        System.out.print("ingrese el id de la carrera: ");
         idCarrera = entrada.nextInt();
 
         for (int i = 0; i < carrerasList.size(); i++) {
             if (carrerasList.get(i).getId() == idCarrera){
-                System.out.println("Carrera "+carrerasList.get(i).getNombre()+" asignada \n");
+                System.out.println("-------------------------------------------------");
+                System.out.println("***** Carrera "+carrerasList.get(i).getNombre()+" asignada *****");
+                System.out.println("-------------------------------------------------");
+                System.out.println("");
                 carreraEncontrada = carrerasList.get(i);
             }
         }

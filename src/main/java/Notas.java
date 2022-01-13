@@ -43,7 +43,7 @@ public class Notas {
     }
 
     public void agregarNota(ArrayList<Usuario> usuariosCreados) {
-        int idusuario, idCarrera, idMateria;
+        int idusuario, idCarrera, idMateria,nuevaMateria;
         ArrayList<Notas> notasList = new ArrayList<>();
         ArrayList<Materia> materiasList = new ArrayList<>();
         Notas nota = new Notas();
@@ -58,15 +58,15 @@ public class Notas {
         if (materia.validarNotas2(materia.getNotas())<100){
             if (notasList.size()>=0) {
                 materia.setNotas(notasList);
-                System.out.println("Las notas han sido agregadas correctamente");
+                System.out.println("---------------------------------------------------");
+                System.out.println("***** Las notas han sido agregadas correctamente *****");
+                System.out.println("-----------------------------------------------------");
             } else {
                 System.out.println("Verifique nuevamente los valores ingresados de las notas");
             }
         } else {
             System.out.println("No puede agregar más notas a la materia "+materia.getNombre()+" porque superaría el 100%");
         }
-
-
     }
 
     public  ArrayList insertarNotas (Materia materia) {
@@ -98,7 +98,6 @@ public class Notas {
             }
         }
         return notasList;
-
     }
 
     public void modificarNota(ArrayList<Usuario> usuariosList){
